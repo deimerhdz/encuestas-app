@@ -30,7 +30,7 @@
                     <span *ngIf="encuesta.estado" class="badge text-bg-success">Si</span>
                 </td>
                 <td>
-                    <button class="button btn-info" (click)="eliminarEncuesta(encuesta.id)">Ver</button>
+                    <button class="button btn-info" (click)="verEncuesta(encuesta?.hash)">Ver</button>
                     <button class="button btn-warning" (click)="publicarEncuesta(encuesta.id)"> Publicar </button>
                     <button class="button delete-button" (click)="eliminarEncuesta(encuesta.id)">Eliminar</button>
                     <button class="button edit-button"  (click)="editarEncuesta(encuesta.id)">Modificar</button>

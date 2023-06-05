@@ -56,7 +56,7 @@ export class EditarEncuestaComponent implements OnInit {
   }
   guardarEncuesta() {
     this.encuestaService
-      .guardarEncuesta(this.encuestaForm.value)
+      .actualizarEncuesta(this.encuestaForm.value)
       .subscribe((response) => {
         if (response) {
           this.router.navigateByUrl('/home/encuestas');
@@ -109,13 +109,15 @@ export class EditarEncuestaComponent implements OnInit {
   eliminarPregunta(id: any) {
     this.preguntaService.eliminarPregunta(id).subscribe((response) => {
       if (response) {
+        this.pregunta ='';
         this.getEncuesta(this.id);
+        this.listarOpciones(this.id);
       }
     });
   }
 
   editarPregunta(pregunta: PreguntaDto) {
-    this.pregunta = `¿${pregunta.titulo}?`;
+    this.pregunta = `${pregunta.titulo}`;
     this.idPregunta = pregunta.codigo;
     this.listarOpciones(this.idPregunta);
   }

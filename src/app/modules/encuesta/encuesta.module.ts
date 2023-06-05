@@ -6,6 +6,7 @@ import { ListadoEncuestaComponent } from './pages/listado-encuesta/listado-encue
 import { AgregarEncuestaComponent } from './pages/agregar-encuesta/agregar-encuesta.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditarEncuestaComponent } from './pages/editar-encuesta/editar-encuesta.component';
+import { VerEncuestaComponent } from './pages/ver-encuesta/ver-encuesta.component';
 
 
 
@@ -13,7 +14,8 @@ import { EditarEncuestaComponent } from './pages/editar-encuesta/editar-encuesta
   declarations: [
     ListadoEncuestaComponent,
     AgregarEncuestaComponent,
-    EditarEncuestaComponent
+    EditarEncuestaComponent,
+    VerEncuestaComponent
   ],
   imports: [
     CommonModule,

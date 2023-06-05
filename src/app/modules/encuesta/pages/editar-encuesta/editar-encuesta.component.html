@@ -27,7 +27,7 @@
             </div>
         </form>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-8">
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h3>Preguntas</h3>
@@ -36,10 +36,10 @@
             </button>
             </div>
             <div class="card-body">
-                <ol class="list-group list-group-numbered" *ngFor="let pregunta of preguntas">
+                <ol class="list-group" *ngFor="let pregunta of preguntas">
                     <li class="list-group-item d-flex justify-content-between align-items-start">
                       <div class="ms-2 me-auto">
-                        <div class="fw-bold">¿{{pregunta.titulo}}?</div>
+                        <div class="fw-bold">{{pregunta.titulo}}</div>
                       </div>
                       <span >
                         <button class="button btn-info" (click)="editarPregunta(pregunta)">Editar</button>
@@ -51,7 +51,7 @@
         </div>
        
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h3>Opciones</h3>

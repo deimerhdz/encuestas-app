@@ -38,6 +38,10 @@ export class ListadoEncuestaComponent implements OnInit {
   editarEncuesta(id:any){
     this.router.navigateByUrl('/home/encuestas/editar-encuesta/'+id);
   }
+
+  verEncuesta(hash:any){
+    this.router.navigateByUrl('/home/encuestas/ver-encuesta/'+hash);
+  }
   eliminarEncuesta(id:any){
     Swal.fire({
       title: 'Estas seguro?',

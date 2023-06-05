@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListadoEncuestaComponent } from './pages/listado-encuesta/listado-encuesta.component';
 import { AgregarEncuestaComponent } from './pages/agregar-encuesta/agregar-encuesta.component';
 import { EditarEncuestaComponent } from './pages/editar-encuesta/editar-encuesta.component';
+import { VerEncuestaComponent } from './pages/ver-encuesta/ver-encuesta.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path:'editar-encuesta/:id',
     component:EditarEncuestaComponent
+  },
+  {
+    path:'ver-encuesta/:hash',
+    component:VerEncuestaComponent
   }
 ];
 

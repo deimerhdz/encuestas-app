@@ -19,6 +19,9 @@ export class EncuestaService {
   public obtenerEncuestasPorId(id:number){
     return this.http.get<EncuestaDto>(`${this.url}/encuestas/obtener-por-id/${id}`);
   }
+  public obtenerEncuestasPorhash(hash:any){
+    return this.http.get<EncuestaDto>(`${this.url}/encuestas/encuesta/${hash}`);
+  }
 
   public guardarEncuesta(encuesta:EncuestaDto){
     
