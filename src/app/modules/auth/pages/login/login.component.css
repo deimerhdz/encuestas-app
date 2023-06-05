@@ -1,0 +1,126 @@
+.form{
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.content__form{
+    width: 400px;
+    min-width: 300px;
+    border: 2px solid black;
+    border-radius: 10px;
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    margin: 10px;
+
+}
+
+.content__form img{
+    width: 90px;
+    height: 90px;
+    display: block;
+    margin: auto;
+    border-radius: 70px;
+    padding: 10px;
+    
+}
+.content__form h3{
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.text{
+    text-align: center;
+    font-size: 15px;
+    font-weight: 300;
+    color: black;
+    margin-bottom: 25px;
+}
+
+.content__form label{
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    outline: none;
+}
+
+#usuario{
+    display: block;
+    margin: auto;
+    height: 40px;
+    width: 70%;
+    padding-left: 10px;
+    color: black;
+    border: 1px solid black;
+    border-radius: 2px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: transparent;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    margin-top: 5px;
+}
+
+#contraseña{
+    display: block;
+    margin: auto;
+    height: 40px;
+    width: 70%;
+    padding-left: 10px;
+    color: black;
+    border: 1px solid black;
+    border-radius: 2px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: transparent;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    margin-top: 5px;
+}
+
+#usuario:hover{
+    transition: 1ms;
+    border: 1px solid darkgreen;
+    color: black;
+}
+
+#contraseña:hover{
+    transition: 1ms;
+    border: 1px solid darkgreen;
+    color: black;
+}
+
+.enviar-datos{
+
+    display: block;
+    margin: auto;
+    margin-top: 25px;
+    margin-bottom: 38px;
+    height: 40px;
+    width: 78%;
+    background-color: darkgreen;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 6px;
+    border-width: 1px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.enviar-datos:hover{
+    color: darkgreen;
+    font-size: 15px;
+    background: transparent;
+    border: 1px solid darkgreen
+}
+

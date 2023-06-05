@@ -1,0 +1,32 @@
+nav{
+    border-bottom: 1px solid black;   
+}
+.nav-tabla{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+    align-items: center;
+    padding: 5px;
+   
+}
+
+.bloque-nav{
+   
+    display: flex;
+    gap: 30px;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+
+}
+.bloque-nav a{
+    text-decoration: none;
+    color: black;
+
+}
+
+.bloque-nav a:hover{
+    color: darkgreen;
+}

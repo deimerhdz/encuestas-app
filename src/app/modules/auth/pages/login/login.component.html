@@ -1,1 +1,15 @@
-<p>login works!</p>
+<div class="form">
+    <div class="content__form">
+        <img src="./assets/images/logo.jpg" alt="imagen del logo">
+        <h3>Sistema de encuesta</h3>
+        <p class="text">Ingresa tus credenciales para iniciar sesión.</p>
+        <form class="login-form" [formGroup]="loginForm" (submit)="login()" >
+            <label for="usuario">Usuario</label>
+            <input type="text" placeholder="Ingrese su usuario" id="usuario" formControlName="usuario" >
+            <label for="contraseña">Contraseña</label>
+            <input type="password" placeholder="Ingrese la contraseña" id="contraseña" formControlName="password">
+            <input type="submit" value="Ingresar" class="enviar-datos">
+        </form>
+    </div>
+  
+</div>

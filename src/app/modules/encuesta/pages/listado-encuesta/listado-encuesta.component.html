@@ -1,2 +1,41 @@
 
-<p>listado-encuesta works!</p>
+
+<section class="section">
+    <header class="header">
+        <h3>Listado de encuesta</h3>
+        <a [routerLink]="['nueva-encuesta']"  class="button button-primary">Agregar</a>
+    </header>
+    
+    <table class="tabla-body">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Título</th>  
+                <th>Descripción</th>  
+        
+                <th>Fecha cierre</th>
+                <th>Publicado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody *ngFor="let encuesta of encuestas">               
+            <tr>
+                <td>{{encuesta.id}}</td>
+                <td>{{encuesta.titulo}}</td> 
+                <td>{{encuesta.descripcion | slice:0:27}}...</td>  
+                <td>{{encuesta.fechaFinal | date: 'short'}}</td> 
+                <td>
+                    <span *ngIf="!encuesta.estado" class="badge text-bg-danger">No</span>
+                    <span *ngIf="encuesta.estado" class="badge text-bg-success">Si</span>
+                </td>
+                <td>
+                    <button class="button btn-info" (click)="eliminarEncuesta(encuesta.id)">Ver</button>
+                    <button class="button btn-warning" (click)="publicarEncuesta(encuesta.id)"> Publicar </button>
+                    <button class="button delete-button" (click)="eliminarEncuesta(encuesta.id)">Eliminar</button>
+                    <button class="button edit-button"  (click)="editarEncuesta(encuesta.id)">Modificar</button>
+                </td>
+            </tr>            
+        </tbody>         
+    </table>
+</section>

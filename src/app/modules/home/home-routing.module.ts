@@ -4,12 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 //locahost:4200/home/encuesta
 const routes: Routes = [
   {
-    path:'encuesta',
+    path:'encuestas',
     loadChildren: () => import(`../encuesta/encuesta.module`).then(m=>m.EncuestaModule)
-  },
-  {
-    path:'preguntas',
-    loadChildren: () => import(`../preguntas/preguntas.module`).then(m=>m.PreguntasModule)
   },
   {
     path:'opciones',
