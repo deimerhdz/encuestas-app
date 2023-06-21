@@ -1,0 +1,16 @@
+<div class="col-md-6">
+        <div *ngIf="mostrar">
+                <canvas baseChart class="chart"
+                [data]="barChartData"
+                [options]="barChartOptions"
+                [plugins]="barChartPlugins"
+                [type]="barChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+                </canvas>
+        </div>
+        
+</div>
+
+
+

@@ -8,6 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  
   public username:string='';
   constructor(private cookie:CookieService,private router:Router) { }
 
@@ -16,6 +17,7 @@ export class NavComponent implements OnInit {
   }
   logout(){
     this.cookie.deleteAll('/');
+    
     this.router.navigateByUrl('/')
   }
 }

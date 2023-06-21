@@ -13,6 +13,10 @@ const routes: Routes = [
     loadChildren: () => import(`./modules/home/home.module`).then(m=>m.HomeModule)
   },
   {
+    path:'realizar-encuesta',
+    loadChildren:()=> import(`./modules/encuestado/encuestado.module`).then(m=>m.EncuestadoModule)
+  },
+  {
     //localhost:42000
     path:'',
     loadChildren: () => import(`./modules/auth/auth.module`).then(m=>m.AuthModule)

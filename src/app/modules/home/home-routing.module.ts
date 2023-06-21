@@ -8,9 +8,9 @@ const routes: Routes = [
     loadChildren: () => import(`../encuesta/encuesta.module`).then(m=>m.EncuestaModule)
   },
   {
-    path:'opciones',
-    loadChildren: () => import(`../opciones/opciones.module`).then(m=>m.OpcionesModule)
-  },
+    path:'reportes',
+    loadChildren: () => import(`../reporte/reporte.module`).then(m=>m.ReporteModule)
+  }
 ];
 
 @NgModule({

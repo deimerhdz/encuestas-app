@@ -5,7 +5,7 @@
    
       <a >{{username}}</a>
       <a [routerLink]="['/home/encuestas']" routerLinkActive="active" >Inicio</a>
-      <a href="#">Reportes</a>
+      <a [routerLink]="['/home/reportes']">Reportes</a>
       <a class="pointer" (click)="logout()">Salir</a>
   </div>
 </div>

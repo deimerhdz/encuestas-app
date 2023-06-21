@@ -7,6 +7,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { InjectTokenInterceptor } from './core/interceptors/inject-token.interceptor';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,7 +15,8 @@ import { InjectTokenInterceptor } from './core/interceptors/inject-token.interce
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+   
   ],
   providers: [CookieService,{
     provide:HTTP_INTERCEPTORS,

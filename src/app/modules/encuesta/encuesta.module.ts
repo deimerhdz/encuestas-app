@@ -8,6 +8,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EditarEncuestaComponent } from './pages/editar-encuesta/editar-encuesta.component';
 import { VerEncuestaComponent } from './pages/ver-encuesta/ver-encuesta.component';
 
+import { ClipboardModule } from '@angular/cdk/clipboard';
+
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import { VerEncuestaComponent } from './pages/ver-encuesta/ver-encuesta.componen
   imports: [
     CommonModule,
     EncuestaRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ClipboardModule
 
   ]
 })

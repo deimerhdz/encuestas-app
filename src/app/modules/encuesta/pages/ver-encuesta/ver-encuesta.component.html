@@ -1,6 +1,13 @@
-<div class="d-flex">
+<div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="copy">
+    Enlace copiado al portapapeles
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="cerrar()"></button>
+  </div>
+<div class="d-flex justify-content-between">
     <div>
         <a [routerLink]="['/home/encuestas']"  class="btn btn-primary">Volver</a>
+    </div>
+    <div>
+        <a  class="btn btn-info" (click)="copiar()">Copiar enlace</a>
     </div>
 </div>
 <div class="row">

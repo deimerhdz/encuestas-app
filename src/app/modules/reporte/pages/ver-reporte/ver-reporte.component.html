@@ -1,0 +1,16 @@
+<h1>Reporte de encuestado</h1>
+<hr>
+<div class="col-md-6">
+    <div class="mb-3 d-flex gap-2">
+        <select class="form-select"(change)="obtenerResultados($event)" >
+            <option selected>Seleccione una encuesta</option>
+            <option [value]="encuesta.id"  *ngFor="let encuesta of encuestas">{{encuesta.titulo}}</option>
+      
+          </select>
+          <button class="mostrar" (click)="verReporte()" class="btn btn-primary">Mostrar</button>
+    </div>
+
+</div>
+<div *ngIf="mostar">
+    <app-grafico-bar #grafico [mostrar]="mostar"></app-grafico-bar>
+</div>

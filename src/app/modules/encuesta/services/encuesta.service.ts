@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { EncuestaDto } from 'src/app/core/models/encuesta.dto';
 import { environment } from 'src/environments/environment';
 import moment from 'moment';
+import { ResultadoEncuestaDto } from 'src/app/core/models/resultado.encuesta.dto';
 @Injectable({
   providedIn: 'root'
 })
@@ -40,5 +41,9 @@ export class EncuestaService {
 
   public eliminarEncuesta(id:number){
     return this.http.delete(`${this.url}/encuestas/eliminar/${id}`);
+  }
+
+  public obtenerResultadosPorEncuesta(id:number){
+    return this.http.get<ResultadoEncuestaDto[]>(`${this.url}/encuestas/resultados/${id}`);
   }
 }

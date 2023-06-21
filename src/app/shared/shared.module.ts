@@ -2,19 +2,22 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavComponent } from './components/nav/nav.component';
 import { RouterModule } from '@angular/router';
-
-
+import { GraficoBarComponent } from './components/grafico-bar/grafico-bar.component';
+import { NgChartsConfiguration, NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
-    NavComponent
+    NavComponent,
+    GraficoBarComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    NgChartsModule,
   ],
   exports:[
-    NavComponent
+    NavComponent,
+    GraficoBarComponent
   ]
 
 })

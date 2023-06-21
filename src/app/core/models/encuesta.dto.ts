@@ -7,7 +7,7 @@ export interface EncuestaDto{
     hash?:string
     fechaRegistro?:Date,
     preguntas?:PreguntaDto[],
-    idUsuario:number,
-    estado:boolean
-    fechaFinal:string
+    idUsuario?:number,
+    estado?:boolean
+    fechaFinal?:string
 }

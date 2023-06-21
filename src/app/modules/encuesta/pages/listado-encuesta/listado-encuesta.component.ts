@@ -1,35 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { EncuestaService } from '../../services/encuesta.service';
 import { EncuestaDto } from 'src/app/core/models/encuesta.dto';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-listado-encuesta',
   templateUrl: './listado-encuesta.component.html',
   styleUrls: ['./listado-encuesta.component.css']
 })
-export class ListadoEncuestaComponent implements OnInit {
+export class ListadoEncuestaComponent implements OnInit,AfterViewInit {
   public encuestas:EncuestaDto [] =[];
+  private id:any;
   constructor(
     private encuestaService:EncuestaService,
     private router:Router,
     private cookie:CookieService
-    ) { }
+    ) { 
+    
+   
+      
+    }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      this.id = this.cookie.get('id');
+      console.log(this.id);
+      this.obtenerEncuestas();
+    },200)
+   
+  }
 
   ngOnInit(): void {
-    this.obtenerEncuestas();
+ 
+ 
   }
 
   obtenerEncuestas(){
-    let id = parseInt(this.cookie.get('id'));
-    this.encuestaService.obtenerEncuestas(id).subscribe(response=>{
+    this.encuestaService.obtenerEncuestas(this.id).subscribe(response=>{
      this.encuestas = response;
       
     })
   }
-
+ 
   publicarEncuesta(id:any){
     this.encuestaService.publicarEncuesta(id).subscribe(response=>{
       this.obtenerEncuestas();
