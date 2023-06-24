@@ -5,6 +5,7 @@ import { EncuestadoRoutingModule } from './encuestado-routing.module';
 import { RealizarEncuestaComponent } from './pages/realizar-encuesta/realizar-encuesta.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FinalizadoComponent } from './pages/finalizado/finalizado.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { FinalizadoComponent } from './pages/finalizado/finalizado.component';
   imports: [
     CommonModule,
     EncuestadoRoutingModule,
+    SharedModule,
     ReactiveFormsModule
   ]
 })

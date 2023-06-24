@@ -4,6 +4,7 @@ import { ListadoEncuestaComponent } from './pages/listado-encuesta/listado-encue
 import { AgregarEncuestaComponent } from './pages/agregar-encuesta/agregar-encuesta.component';
 import { EditarEncuestaComponent } from './pages/editar-encuesta/editar-encuesta.component';
 import { VerEncuestaComponent } from './pages/ver-encuesta/ver-encuesta.component';
+import { ResumenComponent } from './pages/resumen/resumen.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path:'ver-encuesta/:hash',
     component:VerEncuestaComponent
+  },
+  {
+    path:'resumen/:id',
+    component:ResumenComponent
   }
 ];
 

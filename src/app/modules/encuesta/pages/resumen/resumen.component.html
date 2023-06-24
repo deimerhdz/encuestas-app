@@ -1,0 +1,27 @@
+<section class="section">
+    <div class="d-flex justify-content-between">
+        <div>
+            <a [routerLink]="['/home/encuestas']"  class="btn btn-primary">Volver</a>
+        </div>
+    
+    </div>
+    <h3 class="text-center">Total de personas: {{encuestados.length}}</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Identificacion</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Grupo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let encuestado of encuestados">
+                <td>{{encuestado.identificacion}}</td>
+                <td>{{encuestado.nombre}}</td>
+                <td>{{encuestado.email}}</td>
+                <td>{{encuestado.carrera}}</td>
+            </tr>
+        </tbody>
+    </table>
+</section>

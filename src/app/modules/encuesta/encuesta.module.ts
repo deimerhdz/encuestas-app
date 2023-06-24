@@ -9,6 +9,7 @@ import { EditarEncuestaComponent } from './pages/editar-encuesta/editar-encuesta
 import { VerEncuestaComponent } from './pages/ver-encuesta/ver-encuesta.component';
 
 import { ClipboardModule } from '@angular/cdk/clipboard';
+import { ResumenComponent } from './pages/resumen/resumen.component';
 
 
 
@@ -17,7 +18,8 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     ListadoEncuestaComponent,
     AgregarEncuestaComponent,
     EditarEncuestaComponent,
-    VerEncuestaComponent
+    VerEncuestaComponent,
+    ResumenComponent
   ],
   imports: [
     CommonModule,

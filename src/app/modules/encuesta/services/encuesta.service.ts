@@ -4,6 +4,8 @@ import { EncuestaDto } from 'src/app/core/models/encuesta.dto';
 import { environment } from 'src/environments/environment';
 import moment from 'moment';
 import { ResultadoEncuestaDto } from 'src/app/core/models/resultado.encuesta.dto';
+import { Grupo } from 'src/app/core/models/grupo.dto';
+import { group } from '@angular/animations';
 @Injectable({
   providedIn: 'root'
 })
@@ -25,13 +27,22 @@ export class EncuestaService {
   }
 
   public guardarEncuesta(encuesta:EncuestaDto){
-    
+    if(encuesta.grupos.length>0){
+      let grupos = this.convertirGrupos(encuesta.grupos);
+      encuesta.grupos = grupos;
+    }
+  
     encuesta.fechaFinal =  moment(encuesta.fechaFinal).format('Y-MM-DD HH:mm')
 
     return this.http.post(`${this.url}/encuestas/guardar`,encuesta);
   }
 
   public actualizarEncuesta(encuesta:EncuestaDto){
+    if(encuesta.grupos.length>0){
+      let grupos = this.convertirGrupos(encuesta.grupos);
+      encuesta.grupos = grupos;
+    }
+    encuesta.fechaFinal =  moment(encuesta.fechaFinal).format('Y-MM-DD HH:mm')
     return this.http.put(`${this.url}/encuestas/actualizar/${encuesta.id}`,encuesta);
   }
 
@@ -45,5 +56,8 @@ export class EncuestaService {
 
   public obtenerResultadosPorEncuesta(id:number){
     return this.http.get<ResultadoEncuestaDto[]>(`${this.url}/encuestas/resultados/${id}`);
+  }
+  private convertirGrupos(grupos:any[]){
+    return grupos.map(grupo=> new Grupo(grupo));
   }
 }

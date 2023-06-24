@@ -1,80 +1,84 @@
 <div class="container">
-    <div class="row pt-5">
-        <div class="col-md-12">
-            <div class="col-md-8 mx-auto">
-                <div class="d-flex justify-content-center">
-                    <img src="./assets/images/logo.jpg"  class="text-center" alt="">
-                </div>
-                <h3 class="text-center pt-2">
-                    {{encuesta.titulo}}
-                </h3>
-                <p class="text-center">{{encuesta.descripcion}}</p>
-
-                <form [formGroup]="formEncuestado" autocomplete="off" (submit)="enviarEncuesta()">
-                    <section *ngIf="encuesta.estado">
-                        <div *ngIf="step == 1" formGroupName="encuestado">
-                            <fieldset>Complete este formulario antes de comenzar</fieldset>
+ 
+        <div class="row pt-5">
+            <div class="col-md-12">
+                <div class="col-md-6 mx-auto">
+                    <div class="d-flex justify-content-center">
+                        <app-logo class="logo"></app-logo>
+                    </div>
+                    <h3 class="text-center pt-2">
+                        {{encuesta.titulo}}
+                    </h3>
+                    <p class="text-center">{{encuesta.descripcion}}</p>
     
-                            <div class="mb-3 mt-3">
-                                <label for="">Identificacion</label>
-                                <input  type="text" class="form-control" formControlName="identificacion" >
-                                <small  class="text-danger" *ngIf="validarCampoGeneral('identificacion')">Este campo es obligatorio</small>
-                            </div>
-        
-                            <div class="mb-3">
-                                <label for="">Nombre completo</label>
-                                <input type="text" class="form-control" formControlName="nombre">
-                                <small class="text-danger" *ngIf="validarCampoGeneral('nombre')">Este campo es obligatorio.</small>
-                            </div>
-                            <div class="mb-3">
-                                <label for="">Email</label>
-                                <input type="text" class="form-control" formControlName="email">
-                                <small  class="text-danger" *ngIf="validarCampoGeneral('email')">Este campo es obligatorio.</small>
-                            </div>
-                            <div class="mb-3">
-                                <label for="">Seleccionar carrera</label>
-                                <select name="" id="" class="form-control" formControlName="carrera">
-                                    <option value="Ingenieria de sistemas">Ingenieria de sistemas</option>
-                                    <option value="Ingeneiria industrial">Ingeneiria industrial</option>
-                                    <option value="Ingenieria mecanica">Ingenieria mecanica</option>
-                                    <option value="Ingenieria de ambiental">Ingenieria de Ambiental</option>
-                                    <option value="Ingeniria de alimentos">Ingeniria de alimentos</option>
-                                </select>
-                                <small  class="text-danger" *ngIf="validarCampoGeneral('carrera')">Este campo es obligatorio.</small>
-                            </div>
-                            <div class="mb-5">
-                                <button  type="submit" class="button button-primary">Continuar</button>
-                            </div>
-                        </div>
-    
-                        <div *ngIf="step == 2">
-                            <div class="row w-50 justify-content-center mx-auto">
-                                <div class="col-md-12" *ngFor="let pregunta of encuesta?.preguntas">
-                                    <div class="mb-3">
-                                        <label for="">{{pregunta.titulo}}</label>
-                                        <ul *ngFor="let opcion of pregunta.opciones" class="mt-2">
-                                            <div class="form-check">
-                                                <input class="form-check-input" [value]="opcion.id" [name]="pregunta.codigo" (change)="radioChangeHandler($event,pregunta.codigo)" type="radio"  >
-                                                <label class="form-check-label" for="flexRadioDefault1">
-                                                    {{opcion.valor}}
-                                                </label>
-                                              </div>
-                                            
-                                        </ul>
-                                    </div>
+                    <form [formGroup]="formEncuestado" autocomplete="off" (submit)="enviarEncuesta()">
+                        <section *ngIf="encuesta.estado && !terminado">
+                            <div *ngIf="step == 1" formGroupName="encuestado">
+                                <fieldset>Complete este formulario antes de comenzar</fieldset>
+                                <small class="text-danger" *ngIf="existeEncuestado()">No puedes volver a llenar la encuesta</small>
+                                <div class="mb-3 mt-3">
+                                    <label for="">Identificacion</label>
+                                    <input  type="text" class="form-control" formControlName="identificacion" >
+                                    <small  class="text-danger" *ngIf="validarCampoGeneral('identificacion')">Este campo es obligatorio</small>
                                     
                                 </div>
+            
+                                <div class="mb-3">
+                                    <label for="">Nombre completo</label>
+                                    <input type="text" class="form-control" formControlName="nombre">
+                                    <small class="text-danger" *ngIf="validarCampoGeneral('nombre')">Este campo es obligatorio.</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="">Email</label>
+                                    <input type="text" class="form-control" formControlName="email">
+                                    <small  class="text-danger" *ngIf="validarCampoGeneral('email')">Este campo es obligatorio.</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="">Seleccionar grupo </label>
+                                    <select name="" id="" class="form-control" formControlName="carrera">
+                                        <option value="" selected="true" >Seleccionar</option>
+                                        <option [value]="grupo.nombre" *ngFor="let grupo of encuesta.grupos">{{grupo.nombre}}</option>
+                                     
+                                    </select>
+                                    <small  class="text-danger" *ngIf="validarCampoGeneral('carrera')">Este campo es obligatorio.</small>
+                                </div>
+                                <div class="mb-5">
+                                    <button  type="submit" class="button button-primary">Continuar</button>
+                                </div>
                             </div>
-                            <div class="mb-5">
-                                <button  type="submit"class="button button-primary">Continuar</button>
+        
+                            <div *ngIf="step == 2">
+                                <div class="row w-50 justify-content-center mx-auto">
+                                    <div class="col-md-12" *ngFor="let pregunta of encuesta?.preguntas">
+                                        <div class="mb-3">
+                                            <label for="">{{pregunta.titulo}}</label>
+                                            <ul *ngFor="let opcion of pregunta.opciones" class="mt-2">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" [value]="opcion.id" [name]="pregunta.codigo" (change)="radioChangeHandler($event,pregunta.codigo)" type="radio"  >
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        {{opcion.valor}}
+                                                    </label>
+                                                  </div>
+                                                
+                                            </ul>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="mb-5">
+                                    <button  type="submit"class="button button-primary">Continuar</button>
+                                </div>
                             </div>
+                        </section>
+                        <div *ngIf="!encuesta.estado" class="alert alert-warning" role="alert">
+                            La encuesta no se encuentra disponible
                         </div>
-                    </section>
-                    <div *ngIf="!encuesta.estado" class="alert alert-warning" role="alert">
-                        La encuesta no se encuentra disponible
-                    </div>
-                </form>
+                        <div *ngIf="terminado" class="alert alert-warning" role="alert">
+                            La encuesta ha finalizado.
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    
