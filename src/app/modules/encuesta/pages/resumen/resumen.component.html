@@ -17,10 +17,10 @@
         </thead>
         <tbody>
             <tr *ngFor="let encuestado of encuestados">
-                <td>{{encuestado.identificacion}}</td>
-                <td>{{encuestado.nombre}}</td>
-                <td>{{encuestado.email}}</td>
-                <td>{{encuestado.carrera}}</td>
+                <td  data-label="Identificacion">{{encuestado.identificacion}}</td>
+                <td  data-label="Nombre">{{encuestado.nombre}}</td>
+                <td  data-label="Email">{{encuestado.email}}</td>
+                <td  data-label="Grupo">{{encuestado.carrera}}</td>
             </tr>
         </tbody>
     </table>

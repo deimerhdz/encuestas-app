@@ -1,14 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
-body{
-  height: 100vh;
+body,html{
+  height: 100%;
 
 }
-.container{
-    width: 90%;
-    margin: 0 auto; 
-    height: 100%; 
-}
+
 .section{
   padding: 2.5rem;
   border: 1px solid #cccc;
@@ -34,12 +30,6 @@ body{
 button.btn-info{
   background-color: #1a73e8;
   color: white;
-}
-table {
-    width: 100%;
-    margin: 0 auto;
-    border-collapse: collapse;
-
 }
 
 thead tr th{
@@ -111,3 +101,101 @@ tr:hover {
   .pointer{
     cursor: pointer;
   }
+.action{
+  width: 300px;
+}
+  table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+  }
+  
+  table tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
+  }
+  
+  table th,
+  table td {
+    padding: .625em;
+    text-align: center;
+  }
+  
+  table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  
+  @media screen and (max-width: 600px) {
+    table {
+      border: 0;
+    }
+  
+    table caption {
+      font-size: 1.3em;
+    }
+    
+    table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+    }
+    
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+    }
+    
+    table td::before {
+      /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    table td:last-child {
+      border-bottom: 0;
+    }
+    .action{
+      width: 100%;
+    }
+    .section{
+      padding: 0.5rem;
+      margin: 0px 0.5rem;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  

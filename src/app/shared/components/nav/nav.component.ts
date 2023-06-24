@@ -16,8 +16,12 @@ export class NavComponent implements OnInit {
     this.username = this.cookie.get('nombre');
   }
   logout(){
-    this.cookie.deleteAll('/');
-    
+    this.cookie.delete('token','/')
+    this.cookie.delete('id','/')
+    this.cookie.delete('nombre','/')
+
     this.router.navigateByUrl('/')
+  
+   
   }
 }

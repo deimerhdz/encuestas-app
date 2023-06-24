@@ -1,12 +1,13 @@
 
 
-<section class="section">
+<section class="section row">
     <header class="header">
         <h3 class="header__title">Listado de encuesta</h3>
         <a [routerLink]="['nueva-encuesta']"  class="btn btn-sm btn-success">Agregar</a>
     </header>
     
-    <table class="tabla-body">
+  <div class="table-responsive">
+    <table class="table ">
         <thead>
             <tr>
                 <th>Código</th>
@@ -14,21 +15,21 @@
                 <th>Descripción</th>  
                 <th>Fecha cierre</th>
                 <th>Publicado</th>
-                <th>Acciones</th>
+                <th class="action">Acciones</th>
             </tr>
         </thead>
 
-        <tbody *ngFor="let encuesta of encuestas">               
-            <tr>
-                <td>{{encuesta.id}}</td>
-                <td>{{encuesta.titulo}}</td> 
-                <td>{{encuesta.descripcion | slice:0:27}}...</td>  
-                <td>{{encuesta.fechaFinal | date: 'short'}}</td> 
-                <td>
+        <tbody >               
+            <tr *ngFor="let encuesta of encuestas">
+                <td data-label="Codigo">{{encuesta.id}}</td>
+                <td data-label="Título">{{encuesta.titulo}}</td> 
+                <td data-label="Descripción">{{encuesta.descripcion | slice:0:27}}...</td>  
+                <td data-label="Fecha cierre">{{encuesta.fechaFinal | date: 'short'}}</td> 
+                <td data-label="Publicado" >
                     <span *ngIf="!encuesta.estado" class="badge text-bg-danger">No</span>
                     <span *ngIf="encuesta.estado" class="badge text-bg-success">Si</span>
                 </td>
-                <td>
+                <td  >
                     <button class="button " (click)="verResumen(encuesta?.id)" title="Lista de respuestas"><i class="fa-solid fa-people-group"></i></button>
                     <button class="button btn-info" (click)="verEncuesta(encuesta?.hash)" title="Ver"><i class="fa-regular fa-eye"></i></button>
                     <button class="button button-primary" (click)="publicarEncuesta(encuesta.id)" title="Publicar"> <i class="fa-solid fa-bullhorn"></i> </button>
@@ -38,4 +39,5 @@
             </tr>            
         </tbody>         
     </table>
+  </div>
 </section>
