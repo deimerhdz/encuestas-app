@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -16,9 +18,12 @@ export class LoginComponent implements OnInit {
   })
 
   public formSubmit:boolean=false;
-  constructor(private router:Router, private authService:AuthService) { }
+  constructor(private router:Router, private authService:AuthService,private cookieService:CookieService) { }
 
   ngOnInit(): void {
+    if(this.cookieService.get('token')){
+      this.router.navigateByUrl('/home/encuestas')
+    }
   }
 
   login(){
@@ -30,6 +35,9 @@ export class LoginComponent implements OnInit {
       if(response){
         this.router.navigateByUrl('/home/encuestas')
       }
+    },({error})=>{
+      Swal.fire('Error de credenciales',error.message,'success')
+      
     })
     
    

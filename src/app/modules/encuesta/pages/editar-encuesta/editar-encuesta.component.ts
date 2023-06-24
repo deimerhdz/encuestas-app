@@ -70,7 +70,6 @@ export class EditarEncuestaComponent implements OnInit {
     this.encuestaForm.get('titulo')?.setValue(encuesta.titulo);
     this.encuestaForm.get('descripcion')?.setValue(encuesta.descripcion);
     this.encuestaForm.get('fechaFinal')?.setValue(encuesta.fechaFinal);
-    console.log('obteniendo');
     this.grupos.clear()
     encuesta.grupos.forEach(grupo=>{
       this.grupos.push(new FormControl(grupo.nombre,Validators.required))
