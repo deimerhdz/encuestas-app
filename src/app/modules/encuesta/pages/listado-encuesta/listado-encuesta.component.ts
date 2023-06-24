@@ -26,7 +26,6 @@ export class ListadoEncuestaComponent implements OnInit,AfterViewInit {
   ngAfterViewInit(): void {
     setTimeout(()=>{
       this.id = this.cookie.get('id');
-      console.log(this.id);
       this.obtenerEncuestas();
     },200)
    
@@ -55,6 +54,9 @@ export class ListadoEncuestaComponent implements OnInit,AfterViewInit {
 
   verEncuesta(hash:any){
     this.router.navigateByUrl('/home/encuestas/ver-encuesta/'+hash);
+  }
+  verResumen(hash:any){
+    this.router.navigateByUrl('/home/encuestas/resumen/'+hash);
   }
   eliminarEncuesta(id:any){
     Swal.fire({

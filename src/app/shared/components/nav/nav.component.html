@@ -1,12 +1,26 @@
-<nav >
-<div class="nav-tabla">
-  <img src="./assets/images/tabla.png" alt="Logo del sistema de encuesta">
-  <div class="bloque-nav">
-   
-      <a >{{username}}</a>
-      <a [routerLink]="['/home/encuestas']" routerLinkActive="active" >Inicio</a>
-      <a [routerLink]="['/home/reportes']">Reportes</a>
-      <a class="pointer" (click)="logout()">Salir</a>
+
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <app-logo class="logo"></app-logo>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link"[routerLink]="['/home/encuestas']" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home/reportes']" routerLinkActive="active">Reporte</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link pointer" (click)="logout()" >Salir</a>
+        </li>
+      </ul>
+     
+    </div>
   </div>
-</div>
 </nav>

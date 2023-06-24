@@ -2,8 +2,8 @@
 
 <section class="section">
     <header class="header">
-        <h3>Listado de encuesta</h3>
-        <a [routerLink]="['nueva-encuesta']"  class="button button-primary">Agregar</a>
+        <h3 class="header__title">Listado de encuesta</h3>
+        <a [routerLink]="['nueva-encuesta']"  class="btn btn-sm btn-success">Agregar</a>
     </header>
     
     <table class="tabla-body">
@@ -12,7 +12,6 @@
                 <th>Código</th>
                 <th>Título</th>  
                 <th>Descripción</th>  
-        
                 <th>Fecha cierre</th>
                 <th>Publicado</th>
                 <th>Acciones</th>
@@ -30,10 +29,11 @@
                     <span *ngIf="encuesta.estado" class="badge text-bg-success">Si</span>
                 </td>
                 <td>
-                    <button class="button btn-info" (click)="verEncuesta(encuesta?.hash)">Ver</button>
-                    <button class="button btn-warning" (click)="publicarEncuesta(encuesta.id)"> Publicar </button>
-                    <button class="button delete-button" (click)="eliminarEncuesta(encuesta.id)">Eliminar</button>
-                    <button class="button edit-button"  (click)="editarEncuesta(encuesta.id)">Modificar</button>
+                    <button class="button " (click)="verResumen(encuesta?.id)" title="Lista de respuestas"><i class="fa-solid fa-people-group"></i></button>
+                    <button class="button btn-info" (click)="verEncuesta(encuesta?.hash)" title="Ver"><i class="fa-regular fa-eye"></i></button>
+                    <button class="button button-primary" (click)="publicarEncuesta(encuesta.id)" title="Publicar"> <i class="fa-solid fa-bullhorn"></i> </button>
+                    <button class="button delete-button" (click)="eliminarEncuesta(encuesta.id)"  title="Eliminar"><i class="fa-regular fa-trash-can"></i></button>
+                    <button class="button btn-warning"  (click)="editarEncuesta(encuesta.id)" title="Modifica"><i class="fa-regular fa-pen-to-square"></i></button>
                 </td>
             </tr>            
         </tbody>         

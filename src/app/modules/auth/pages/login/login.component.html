@@ -1,15 +1,31 @@
-<div class="form">
-    <div class="content__form">
-        <img src="./assets/images/logo.jpg" alt="imagen del logo">
-        <h3>Sistema de encuesta</h3>
-        <p class="text">Ingresa tus credenciales para iniciar sesión.</p>
-        <form class="login-form" [formGroup]="loginForm" (submit)="login()" >
-            <label for="usuario">Usuario</label>
-            <input type="text" placeholder="Ingrese su usuario" id="usuario" formControlName="usuario" >
-            <label for="contraseña">Contraseña</label>
-            <input type="password" placeholder="Ingrese la contraseña" id="contraseña" formControlName="password">
-            <input type="submit" value="Ingresar" class="enviar-datos">
-        </form>
+<div class="container bg-white">
+    <div class="login">
+        <div class="login__content">
+           <app-logo class="logo"></app-logo>
+            <form  class="form" [formGroup]="loginForm" (submit)="login()">
+                <h3 class="form__title">Bienvenido</h3>
+                <p class="form__paragraph">El último sitio web todo en uno para ayudarlo a administrar todo.</p>
+                <div class="form__input">
+                    <label for="">Usuario</label>
+                    <input type="text"  class="form-control" formControlName="usuario" placeholder="Ingresar usuario">
+                </div>
+                <div class="form__input">
+                    <label for="">Contraseña</label>
+                    <input type="password" class="form-control" formControlName="password" placeholder="Ingresar contraseña">
+                </div>
+                <button class="button button-primary" type="submit">Iniciar sesion</button>
+            </form>
+        </div>
+        <div class="login__picture">
+            <img src="/assets/images/survey.svg" alt=" icono de encuesta">
+        </div>
     </div>
-  
 </div>
+
+
+
+
+
+
+
+

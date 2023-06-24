@@ -1,24 +1,55 @@
-<div class="row mx-auto">
-    <div class="col-md-6">
-        <h3>Agregar encuesta</h3>
-        <form   [formGroup]="encuestaForm" (submit)="guardarEncuesta()">
-            <div class="mb-3">
-                <label for="">Titulo de la encuesta</label>
-                <input type="text" formControlName="titulo" class="form-control " placeholder="Ingrese el titulo de la encuesta">
-            </div>
-            <div class="mb-3">
-                <label for="">Descripcion</label>
-                <textarea type="text" formControlName="descripcion" class="form-control" placeholder="Descripcion"></textarea>
-            </div>
-            <div class="mb-3">
-                <label for="">Fecha de cierre</label>
-                <input type="datetime-local"  formControlName="fechaFinal" class="form-control" placeholder="Fecha de cierre">
-            </div>
-
-            <div class="mb-3">
-                <button class="button button-primary">Agregar</button>
-            </div>
-
-        </form>
+<div class="section">
+    <div class="d-flex">
+        <div>
+            <a [routerLink]="['/home/encuestas']"  class="btn btn-sm btn-primary">Volver</a>
+        </div>
     </div>
+    <form   [formGroup]="encuestaForm" (submit)="guardarEncuesta()">
+    <div class="row mx-auto">
+            <div class="col-md-6">
+            <h3>Agregar encuesta</h3>
+                <div class="mb-3">
+                    <label for="">Titulo de la encuesta</label>
+                    <input type="text" formControlName="titulo" class="form-control " placeholder="Ingrese el titulo de la encuesta">
+                    <small *ngIf="validarInput('titulo')" class="text-danger">El titulo de la encuesta es obligatorio.</small>
+                </div>
+                <div class="mb-3">
+                    <label for="">Descripcion</label>
+                    <textarea type="text" formControlName="descripcion" class="form-control" placeholder="Descripcion"></textarea>
+                    <small *ngIf="validarInput('descripcion')" class="text-danger">La descripcion de la encuesta es obligatoria.</small>
+                </div>
+                <div class="mb-3">
+                    <label for="">Fecha de cierre</label>
+                    <input type="datetime-local"  formControlName="fechaFinal" class="form-control" placeholder="Fecha de cierre">
+                    <small *ngIf="validarInput('fechaFinal')" class="text-danger">Debe ingresar una fecha de cierre para la encuesta.</small>
+                </div>
+    
+                <div class="mb-3">
+                    <button class="btn btn-sm btn-success">Registrar</button>
+                </div>
+    
+            </div>
+            <div class="col-md-6">
+                <h3>Clasificacion</h3>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Grupo</th>
+                            <th>Borrar</th>
+                        </tr>
+                    </thead>
+                    <tbody formArrayName="grupos">
+                        <tr *ngFor="let control of grupos.controls; let i=index">
+                            <td>{{i+1}}</td>
+                            <td><input type="text" class="form-control" [formControlName]="i"></td>
+                            <td><button type="button" (click)="eliminarGrupo(i)" class="btn btn-sm btn-danger">Borrar</button></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+                <button class="btn btn-sm btn-primary" (click)="agregarGrupo()" type="button">Agregar</button>
+            </div>
+        </div>
+    </form>
 </div>

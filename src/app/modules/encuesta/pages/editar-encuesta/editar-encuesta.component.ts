@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EncuestaService } from '../../services/encuesta.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PreguntasService } from '../../services/preguntas.service';
@@ -26,6 +26,7 @@ export class EditarEncuestaComponent implements OnInit {
     descripcion: new FormControl('', Validators.required),
     idUsuario: new FormControl(''),
     fechaFinal: new FormControl('', Validators.required),
+    grupos:new FormArray([])
   });
 
   private id: any;
@@ -69,6 +70,11 @@ export class EditarEncuestaComponent implements OnInit {
     this.encuestaForm.get('titulo')?.setValue(encuesta.titulo);
     this.encuestaForm.get('descripcion')?.setValue(encuesta.descripcion);
     this.encuestaForm.get('fechaFinal')?.setValue(encuesta.fechaFinal);
+    console.log('obteniendo');
+    this.grupos.clear()
+    encuesta.grupos.forEach(grupo=>{
+      this.grupos.push(new FormControl(grupo.nombre,Validators.required))
+    })
   }
 
   agregarPregunta() {
@@ -163,5 +169,14 @@ export class EditarEncuestaComponent implements OnInit {
     this.opcionService.eliminarOpcion(id).subscribe(response=>{
       this.listarOpciones(this.idPregunta);
     })
+  }
+  get grupos(){
+    return this.encuestaForm.get('grupos') as FormArray;
+  }
+  agregarGrupo(){
+    this.grupos.push(new FormControl('',Validators.required))
+  }
+  eliminarGrupo(i){
+    this.grupos.removeAt(i);
   }
 }

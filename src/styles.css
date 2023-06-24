@@ -1,23 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
 
+body{
+  height: 100vh;
+
+}
+.container{
+    width: 90%;
+    margin: 0 auto; 
+    height: 100%; 
+}
 .section{
-    width: 100%;
-   
+  padding: 2.5rem;
+  border: 1px solid #cccc;
+  background: white;
+  border-radius: 4px;
 }
 .header{
     display: flex;
     justify-content: space-between;
-    width: 90%;
-    margin: 0 auto;
     padding: 10px 0px;
 }
+.logo{
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
 .btn{
     display: block;
     align-self: center;
     padding: 10px 25px;
 }
+button.btn-info{
+  background-color: #1a73e8;
+  color: white;
+}
 table {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     border-collapse: collapse;
 
@@ -62,23 +81,29 @@ tr:hover {
     background-color: #f44336;
     color: white;
   }
-  
+  .bg-white{
+    background: white;
+  }
+  .bg-gray{
+   background: #f2f2f2;
+   height: 100%;
+  }
+  .header__title{
+    font-size: 1.5rem;
+}
   .button-primary {
-    background-color: #4CAF50;
+    background-color: #00BFA6;
     color: white;
   }
-  .edit-button {
-    background-color: #4CAF50;
-    color: white;
+  button.btn-warning{
+    background-color: #ffc107;
+
   }
   
   .delete-button:hover{
     background-color: #d32f2f;
   }
   
-  .edit-button:hover {
-    background-color: #eda90b;
-  }
   .delete-button:active, .edit-button:active {
     background-color: #b71c1c;
   }
