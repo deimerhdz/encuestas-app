@@ -12,7 +12,36 @@
         </div>
     
     </div>
-    <div *ngIf="mostar">
-        <app-grafico-bar #grafico [mostrar]="mostar"></app-grafico-bar>
+    <div class="row">
+      
+        <div *ngIf="mostar" class="col-md-6">
+            <app-grafico-bar #grafico [mostrar]="mostar"></app-grafico-bar>
+           
+            <h3>Media General: {{mediaGeneral | percent:'2.1-2'}}</h3>
+            <p><b>Baremo</b></p>
+            <div class="list-group">
+                <li class="list-group-item">0 - 33 (leve)</li>
+                <li class="list-group-item">34 - 66 (moderado)</li>
+                <li class="list-group-item">67 -100 (Profundo)</li>
+            </div>
+            
+        </div>
+        <div *ngIf="mostar" class="col-md-6">
+            <h3>Media por cada Item</h3>
+            <div class="list-group">
+                <li class="list-group-item">Si {{mediaSi | percent :'2.1-2'}}</li>
+                <li class="list-group-item">No {{mediaNo | percent:'2.1-2'}}</li>
+                <li class="list-group-item">Nunca {{mediaNunca | percent:'2.1-2'}}</li>
+                <li class="list-group-item">Rara vez {{mediaRaraVez | percent:'2.1-2'}}</li>
+                <li class="list-group-item">Algunas veces {{mediaAlgunasVeces | percent:'2.1-2'}}</li>
+                <li class="list-group-item">Casi siempre {{mediaCasiSiempre | percent:'2.1-2'}}</li>
+                <li class="list-group-item">Siempre {{mediaSiempre | percent:'2.1-2'}}</li>
+            </div>
+            <br>
+            <br>
+            <h3>Constante de cronbatch: {{cronbatch}}</h3>
+          
+        </div>
     </div>
+    
 </div>

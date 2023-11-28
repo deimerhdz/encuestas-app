@@ -1,5 +1,6 @@
 export interface OpcionDto{
     idPregunta:number,
-    valor:string
+    descripcion:string,
+    valor?:number,
     id?:number,
 }

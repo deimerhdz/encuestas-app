@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url:'http://localhost:8080'
+  url:'http://ec2-3-138-32-167.us-east-2.compute.amazonaws.com:8080'
 };
 
 /*

@@ -56,7 +56,7 @@
                                                 <div class="form-check">
                                                     <input class="form-check-input" [value]="opcion.id" [name]="pregunta.codigo" (change)="radioChangeHandler($event,pregunta.codigo)" type="radio"  >
                                                     <label class="form-check-label" for="flexRadioDefault1">
-                                                        {{opcion.valor}}
+                                                        <span *ngIf="opcion.valor !==0"> ( {{opcion.valor}})</span> - {{opcion.descripcion}}
                                                     </label>
                                                   </div>
                                                 

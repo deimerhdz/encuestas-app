@@ -23,7 +23,7 @@
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                         <label class="form-check-label" for="flexRadioDefault1">
-                            {{opcion.valor}}
+                            <span *ngIf="opcion.valor !==0"> ( {{opcion.valor}})</span> - {{opcion.descripcion}}
                         </label>
                       </div>
                     

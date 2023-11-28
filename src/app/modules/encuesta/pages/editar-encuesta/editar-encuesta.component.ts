@@ -9,7 +9,10 @@ import { PreguntaDto } from 'src/app/core/models/pregunta.dto';
 import Swal from 'sweetalert2';
 import { OpcionService } from '../../services/opcion.service';
 import { OpcionDto } from 'src/app/core/models/opcion.dto';
-
+type LoginFormResult = {
+  descripcion: string
+  escala: boolean
+}
 @Component({
   selector: 'app-editar-encuesta',
   templateUrl: './editar-encuesta.component.html',
@@ -77,39 +80,51 @@ export class EditarEncuestaComponent implements OnInit {
   }
 
   agregarPregunta() {
-    Swal.fire({
-      title: 'Nombre de la pregunta',
-      input: 'text',
-      inputAttributes: {
-        autocapitalize: 'off',
-      },
-      showCancelButton: true,
+    let descripcionInput: HTMLInputElement
+    let valueInput: HTMLInputElement
+    Swal.fire<LoginFormResult>({
+      title: 'Login Form',
+      html: `
+        <input type="text" id="descripcion" class="swal2-input" placeholder="Descripcion de la pregunta"><br>
+        
+        <input type="checkbox" id="escala" value="false">
+        <label>Desea generar las escalas del 1 al 5 automaticamente?</label>
+      `,
       confirmButtonText: 'Agregar',
-      showLoaderOnConfirm: true,
-      preConfirm: (titulo) => {
-        return titulo;
+      focusConfirm: false,
+      didOpen: () => {
+        const popup = Swal.getPopup()!
+        descripcionInput = popup.querySelector('#descripcion') as HTMLInputElement
+        valueInput = popup.querySelector('#escala') as HTMLInputElement
+        descripcionInput.onkeyup = (event) => event.key === 'Enter' && Swal.clickConfirm()
+        valueInput.onkeyup = (event) => event.key === 'Enter' && Swal.clickConfirm()
       },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if (result.value.length == 0) {
-          Swal.fire('Error!', 'El campo no puede estar vacio!', 'error');
-        } else {
-          this.preguntaService
-            .guardarPregunta({
-              titulo: result.value,
-              idEncuesta: this.id,
-              idTipoPregunta: 1,
-            })
-            .subscribe((response) => {
-              if (response) {
-                this.getEncuesta(response.idEncuesta);
-              }
-            });
+      preConfirm: () => {
+        console.log(valueInput.checked);
+        
+        const descripcion = descripcionInput.value
+        const escala = valueInput.checked;
+     
+        if (!descripcion) {
+          Swal.showValidationMessage(`Por favor ingrese la descripcion`)
         }
-      }
-    });
+        return { descripcion, escala }
+      },
+    }).then((result)=>{
+      if (result.isConfirmed) {
+        let pregunta ={titulo: result.value.descripcion,generarScala:Boolean(result.value.escala),idEncuesta: this.id,idTipoPregunta: 1}
+              this.preguntaService.guardarPregunta(pregunta)
+                .subscribe((response) => {
+                  if (response) {
+                    this.getEncuesta(response.idEncuesta);
+                  }
+                });
+            
+          }
+    })
+    
   }
+
 
   eliminarPregunta(id: any) {
     this.preguntaService.eliminarPregunta(id).subscribe((response) => {
@@ -147,7 +162,7 @@ export class EditarEncuestaComponent implements OnInit {
           Swal.fire('Error!', 'El campo no puede estar vacio!', 'error');
         } else {
           this.opcionService
-            .guardarOpcion({ valor: result.value, idPregunta: this.idPregunta })
+            .guardarOpcion({ descripcion: result.value, idPregunta: this.idPregunta })
             .subscribe((response) => {
               if (response) {
                 this.listarOpciones(this.idPregunta);

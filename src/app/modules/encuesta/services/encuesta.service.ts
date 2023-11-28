@@ -6,6 +6,7 @@ import moment from 'moment';
 import { ResultadoEncuestaDto } from 'src/app/core/models/resultado.encuesta.dto';
 import { Grupo } from 'src/app/core/models/grupo.dto';
 import { group } from '@angular/animations';
+import { RespuestaItemDto } from 'src/app/core/models/respuesta.item.dto';
 @Injectable({
   providedIn: 'root'
 })
@@ -55,7 +56,10 @@ export class EncuestaService {
   }
 
   public obtenerResultadosPorEncuesta(id:number){
-    return this.http.get<ResultadoEncuestaDto[]>(`${this.url}/encuestas/resultados/${id}`);
+    return this.http.get<RespuestaItemDto[]>(`${this.url}/respuestas/resumen-por-opciones/${id}`);
+  }
+  public obtenerConstanteCronbatch(id:number){
+    return this.http.get<number>(`${this.url}/respuestas/constante-cronbach/${id}`);
   }
   private convertirGrupos(grupos:any[]){
     return grupos.map(grupo=> new Grupo(grupo));
