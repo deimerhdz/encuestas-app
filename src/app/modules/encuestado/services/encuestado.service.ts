@@ -17,6 +17,8 @@ export class EncuestadoService {
   }
 
   public guardarRespuestas(encuesta:EncuestadoWithRespuestaDto){
+    console.log(encuesta);
+    
     return this.http.post(`${this.url}/encuestado/guardar`,encuesta);
   }
 

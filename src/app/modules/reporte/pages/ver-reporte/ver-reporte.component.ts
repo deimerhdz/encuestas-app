@@ -5,6 +5,7 @@ import { delay } from 'rxjs';
 import { DataChar, Data } from 'src/app/core/models/data.char.dto';
 import { EncuestaDto } from 'src/app/core/models/encuesta.dto';
 import { Encuestado } from 'src/app/core/models/encuestado.dto';
+import { MediaItemDto } from 'src/app/core/models/media-item.dto';
 import { RespuestaItemDto } from 'src/app/core/models/respuesta.item.dto';
 import { ResultadoEncuestaDto } from 'src/app/core/models/resultado.encuesta.dto';
 import { EncuestaService } from 'src/app/modules/encuesta/services/encuesta.service';
@@ -25,14 +26,8 @@ export class VerReporteComponent implements OnInit {
   private idUser;
   private idEncuesta;
 
-  //estadistica
-  public mediaSi:number=0;
-  public mediaNo:number=0;
-  public mediaNunca:number=0;
-  public mediaRaraVez:number=0;
-  public mediaCasiSiempre:number=0;
-  public mediaAlgunasVeces:number=0;
-  public mediaSiempre:number=0;
+  //estadistica 
+  public mediaItem:MediaItemDto[] = [];
   public mediaGeneral:number=0;
   public resultados: DataChar = {
     labels: [],
@@ -47,6 +42,12 @@ export class VerReporteComponent implements OnInit {
 
   verReporte() {
     this.obtenerEncuestadoService(this.idEncuesta);
+    this.encuestaService.obtenerResultadosPorPregunta(this.idEncuesta).subscribe(response=>{
+      this.mediaItem = response;
+      this.calcularValoresMedios(response)
+      console.log(response);
+      
+    })
     this.encuestaService.obtenerConstanteCronbatch(this.idEncuesta).subscribe(response=>{
       this.cronbatch =response;
     })
@@ -77,7 +78,7 @@ export class VerReporteComponent implements OnInit {
       .subscribe((response) => {
         this.mostar = true;
         this.setDatos(response);
-        this.calcularValoresMedios(response);
+       
         setTimeout(() => {
           this.grafico.barChartData = this.resultados;
         }, 300);
@@ -86,35 +87,14 @@ export class VerReporteComponent implements OnInit {
   obtenerResultados(event) {
     this.idEncuesta = event.target.value;
   }
-  calcularValoresMedios(data: RespuestaItemDto[]){
-    let total=0;
-    data.forEach((valor:RespuestaItemDto)=>{
-      total+= valor.total;
-      switch(valor.descripcion){
-        case 'No': 
-          this.mediaNo = valor.total/data.length;
-        break;
-        case 'Si':
-          this.mediaSi = valor.total/data.length;
-        break;
-        case 'Nunca':
-          this.mediaNunca = valor.total/data.length;
-        break;
-        case 'Siempre':
-          this.mediaSiempre = valor.total/data.length;
-        break;
-        case 'Rara vez':
-          this.mediaRaraVez = valor.total/data.length;
-        break;
-        case 'Algunas veces':
-          this.mediaAlgunasVeces = valor.total/data.length;
-        break;
-        case 'Casi siempre':
-          this.mediaCasiSiempre = valor.total/data.length;
-        break;
-      }
+  calcularValoresMedios(data: MediaItemDto[]){
+    let mediatotal =0;
+    data.forEach(item => {
+      mediatotal+=(item.suma/item.numeroPregunta)
     })
-    this.mediaGeneral = total / data.length;
+
+    this.mediaGeneral = mediatotal/data.length;
+      
   }
   setDatos(data: RespuestaItemDto[]) {
     let valores = [];

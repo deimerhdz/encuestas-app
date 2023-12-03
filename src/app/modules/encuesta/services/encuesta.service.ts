@@ -7,6 +7,7 @@ import { ResultadoEncuestaDto } from 'src/app/core/models/resultado.encuesta.dto
 import { Grupo } from 'src/app/core/models/grupo.dto';
 import { group } from '@angular/animations';
 import { RespuestaItemDto } from 'src/app/core/models/respuesta.item.dto';
+import { MediaItemDto } from 'src/app/core/models/media-item.dto';
 @Injectable({
   providedIn: 'root'
 })
@@ -57,6 +58,9 @@ export class EncuestaService {
 
   public obtenerResultadosPorEncuesta(id:number){
     return this.http.get<RespuestaItemDto[]>(`${this.url}/respuestas/resumen-por-opciones/${id}`);
+  }
+  public obtenerResultadosPorPregunta(id:number){
+    return this.http.get<MediaItemDto[]>(`${this.url}/respuestas/resumen-por-pregunta/${id}`);
   }
   public obtenerConstanteCronbatch(id:number){
     return this.http.get<number>(`${this.url}/respuestas/constante-cronbach/${id}`);

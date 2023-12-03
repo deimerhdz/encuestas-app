@@ -46,7 +46,8 @@ export class RealizarEncuestaComponent implements OnInit {
       idEncuesta: new FormControl('',Validators.required),
       email:new FormControl('',Validators.required)
     }),
-    respuestas: new FormArray([])
+    idEncuesta: new FormControl('',Validators.required),
+    respuestas: new FormArray([],Validators.required)
   });
   ngOnInit(): void {
     this.obtenerEncuesta();
@@ -61,7 +62,7 @@ export class RealizarEncuestaComponent implements OnInit {
     //Si el usuario cambia la opcion de una pregunta se actualiza el valor para evitar respuestas duplicadas
     //si no se puede actualizar entonces no existen duplicados y se procede a agregar una nueva respuesta
     if(!this.actualizarRespuesta(this.respuestas.value,pregunta,'opcion',respuesta) ){
-      this.respuestas.push(new FormGroup({ idPregunta: new FormControl(pregunta), opcion: new FormControl(respuesta)}))
+      this.respuestas.push(new FormGroup({ idPregunta: new FormControl(pregunta,Validators.required), opcion: new FormControl(respuesta,Validators.required)}))
     }
   }
 
@@ -71,6 +72,7 @@ export class RealizarEncuestaComponent implements OnInit {
       this.encuesta = encuesta;
       this.verificarFechaDeCierre(this.encuesta);
       this.formEncuestado.controls['encuestado'].get('idEncuesta')!.setValue(encuesta.id)
+      this.formEncuestado.controls['idEncuesta'].setValue(encuesta.id)
     })
   }
   enviarEncuesta(){
@@ -80,6 +82,10 @@ export class RealizarEncuestaComponent implements OnInit {
         return;
       }
       if(this.step ==2){
+        if(this.formEncuestado.controls['respuestas'].invalid && this.step == 2){
+          this.formSubmit = true;
+          return;
+        }
         this.encuestadoService.guardarRespuestas(this.formEncuestado.value).subscribe(response=>{
             if(response){
               this.router.navigateByUrl('/realizar-encuesta/finalizado')
